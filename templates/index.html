@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestione inventario</title>
+    <link rel=""stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Inventario Attuale</h1>
+    <table>
+        <tr>
+            <th>Misura</th>
+            <th>quantità</th>
+        </tr>
+        <tr>
+            <td>750X805</td>
+            <td>{{ inventory[1] }}</td>
+        </tr>
+        <tr>
+            <td>750X515</td>
+            <td>{{ inventory[2] }}</td>
+        </tr>
+        <tr>
+            <td>500X580</td>
+            <td>{{ inventory[3] }}</td>
+        </tr>
+        <tr>
+            <td>550X685</td>
+            <td>{{ inventory[4] }}</td>
+        </tr>
+        <tr>
+            <td>750X965</td>
+            <td>{{ inventory[5] }}</td>
+        </tr>
+    </table>
+
+    <h2>Prelievo</h2>
+    <form action="/prelievo" method="post">
+        <label for="misura">Misura</label>
+        <select name="misura" id="misura">
+            <option value="misura_750X805">750X805</option>
+            <option value="misura_750X515">750X515</option>
+            <option value="misura_500X580">500X580</option>
+            <option value="misura_550X685">550X685</option>
+            <option value="misura_750X965">750X965</option>
+        </select><br><br>
+        <label for="quantità">quantità</label>
+        <input type="number" id="quantita" name="quantita"><br><br>
+        <button type="submit">Prelievo</button>
+    </form>
+</body>
+</html>
