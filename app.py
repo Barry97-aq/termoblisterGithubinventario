@@ -2,11 +2,16 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 import yagmail
 from threading import Timer
+from dotenv import load_dotenv
+import os
+
+#vaviabili d'ambiente dal file .env 
+load_dotenv()
 
 #imposta email
-SENDER_EMAIL= "it.barry1997@gmail.com"
-SENDER_PASSWORD= "ezjq ipns vngn tvwx"
-RECEIVER_EMAIL= "momo1997moha@gmail.com"
+SENDER_EMAIL= os.getenv("SENDER_EMEIL")
+SENDER_PASSWORD= os.getenv("SENDER_PASSWORD")
+RECEIVER_EMAIL= os.getenv("RECEIVER_EMEIL")
 
 THRESHOLD = 20
 
@@ -24,7 +29,7 @@ def update_inventario(column, quantity):
     conn = sqlite3.connect("inventario.db")
     cursor = conn.cursor()
     cursor.execute(f"UPDATE bombolotti_inventario SET {column} = {column} - ? WHERE id = 1", (quantity,))
-    conn.commit
+    conn.commit()
     conn.close()    
 
 def send_email(subject, body):
